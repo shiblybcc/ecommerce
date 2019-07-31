@@ -5,6 +5,8 @@
 # python manage.py shell
 # change port
 python manage.py runserver 8888
+# auto move static files, css files
+python manage.py collectstatic
 # create super user
 python manage.py createsuperuser
 Username (leave blank to use 'bcc'): adminuser
