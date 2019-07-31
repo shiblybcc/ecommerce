@@ -15,4 +15,4 @@ def about_page(request):
 
 def contact_page(request):
 
-    return render(request, 'home_page.html', {})
+    return render(request, 'contact/view.html', {})
