@@ -14,6 +14,14 @@ def upload_image_path(instance, filename):
     return 'products/{new_filename}/{final_filename}'.format(new_filename, final_filename)
 
 
+class ProductManager(models.Manager):
+    def get_by_id(self, id):
+        qs = self.get_queryset().filter(id)
+        if qs.count() == 1:
+            return qs.first()
+        return None
+
+
 class Product(models.Model):
     title = models.CharField(max_length=120)
     description = models.TextField()
