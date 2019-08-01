@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.shortcuts import render
 
 from .models import Product
@@ -18,3 +18,8 @@ class ProductListView(ListView):
 #         'object_list': qs
 #     }
 #     return render(request, 'product/product_list_view.html', context)
+
+
+class ProductDetailView(DetailView):
+    qs = Product.objects.all()
+    template_name = 'products/detail.html'
