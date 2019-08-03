@@ -28,6 +28,18 @@ class ProductManager(models.Manager):
     def get_queryset(self):
         return ProductQuerySet(self.model, using=self._db)
 
+    def all(self):
+        return self.get_queryset().active()
+
+    def featured(self):
+        return self.get_queryset().featured()
+
+    def get_by_id(self, id):
+        qs = self.get_queryset().filter(id=id)
+        if qs.count() == 1:
+            return qs.first()
+        return None
+
     # def featured(self):
     #     return self.get_queryset().featured()
 
@@ -48,6 +60,8 @@ class Product(models.Model):
     image = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
     featured = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
+
+    objects = ProductManager()
 
     def __str__(self):
         return self.title
