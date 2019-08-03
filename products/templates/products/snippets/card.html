@@ -4,7 +4,7 @@
     {% endif %}
     <div class="card-body">
         <h4 class="card-title">{{ instance.title }}</h4>
-        <p class="card-text">Some quick example text here and there</p>
+        <p class="card-text">{{ instance.description | linebreaks | truncatewords:15 }}</p>
         <a href="#" class="btn btn-primary"></a>
     </div>
 </div>

@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="col">
+      {{ object.title }}
+        {{ object.description | linebreaks }}
+        {% if object.image %}
+            <img src="{{ object.image.url }}" class="img-fluid">
+        {% endif %}
 
-    {% object.title %}
-    {% object.description %}
-    {% if object.image %}
-        <img src="{{ object.image.url }}" class="img-fluid">
-    {% endif %}
-
+        </div>
+    </div>
+    </div>
 {% endblock %}

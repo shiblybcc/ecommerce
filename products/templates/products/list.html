@@ -7,7 +7,7 @@
     {% for obj in object_list %}
         <div class="col">
             {% include 'products/snippets/card.html' with instance=obj %}
-            <a href="#">{{ obj.title }}</a><br/>
+            <a href="{% url 'products:detail' %}">{{ obj.title }}</a><br/>
         </div>
     {% endfor %}
 </div>
