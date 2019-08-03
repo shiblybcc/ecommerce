@@ -2,6 +2,7 @@
 # django-admin.py startproject tryjango19 => creates a new project
 # python manage.py runserver
 # python manage.py migrate
+# python manage.py migrate
 # python manage.py shell
 # change port
 python manage.py runserver 8888

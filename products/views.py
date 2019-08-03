@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-from django.shortcuts import render, Http404
+from django.shortcuts import render, Http404, get_object_or_404
 
 from .models import Product
 
@@ -17,18 +17,10 @@ class ProductFeaturedDetailView(DetailView):
 
     template_name = 'products/featured-detail.html'
 
-    # def get_queryset(self, *args, **kwargs):
-    #     request = self.request
-    #     return Product.objects.all().featured()
-
 
 class ProductListView(ListView):
     queryset = Product.objects.all()
     template_name = 'products/list.html'
-
-    # def get_context_data(self, *args, object_list=None, **kwargs):
-    #     context = super(ProductListView, self).get_context_data(*args, **kwargs)
-    #     return context
 
     def get_queryset(self, *args, **kwargs):
         request = self.request
@@ -41,6 +33,25 @@ class ProductListView(ListView):
 #         'object_list': qs
 #     }
 #     return render(request, 'product/product_list_view.html', context)
+
+
+class ProductFeaturedDetailSlugView(DetailView):
+    queryset = Product.objects.all()
+    template_name = "products/detail.html"
+
+    def get_object(self, *args, **kwargs):
+        request = self.request
+        slug = self.kwargs.get('slug')
+        try:
+            instance = get_object_or_404(Product, slug=slug, active=True)
+        except Product.DoesNotExist:
+            raise Http404("Product doesn't exists")
+        except Product.MultipleObjectsReturned:
+            qs = Product.objects.filter(slug=slug, active=True)
+            instance = qs.first()
+        except:
+            raise Http404('something went wrong')
+        return instance
 
 
 class ProductDetailView(DetailView):
