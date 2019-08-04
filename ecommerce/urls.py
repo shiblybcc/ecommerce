@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^register/$', register_page, name='register'),
     url(r'^products/', include('products.urls')),
     url(r'^search/', include('search.urls')),
+    url(r'^tags/', include('tags.urls')),
     url(r'^admin/', admin.site.urls),
 ]
 
