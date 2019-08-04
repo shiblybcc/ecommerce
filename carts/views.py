@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
+from products.models import Product
 from .models import Cart
 
 
@@ -14,3 +15,14 @@ def cart_home(request):
     cart_obj.total = total
     cart_obj.save()
     return render(request, "carts/home.html", {})
+
+
+def cart_update(request):
+    product = Product.objects.get(id=3)
+    cart, new_cart = Cart.objects.new_or_get(request)
+    if product in cart.products.all():
+        cart.products.remove(product)
+    else:
+        cart.products.add(product)
+
+    return redirect("cart:home")
