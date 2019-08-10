@@ -17,11 +17,16 @@ def cart_home(request):
 
 
 def cart_update(request):
-    product = Product.objects.get(id=3)
-    cart, new_cart = Cart.objects.new_or_get(request)
-    if product in cart.products.all():
-        cart.products.remove(product)
-    else:
-        cart.products.add(product)
+    product_id = request.POST.get('product_id')
+    if product_id is not None:
+        try:
+            product = Product.objects.get(id=product_id)
+        except Product.DoesNotExist:
+            return redirect('cart:home')
+        cart, new_cart = Cart.objects.new_or_get(request)
+        if product in cart.products.all():
+            cart.products.remove(product)
+        else:
+            cart.products.add(product)
 
     return redirect("cart:home")
