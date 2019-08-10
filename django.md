@@ -1,3 +1,7 @@
+https://python-academy.com/download/scale/
+
+
+
 # source /home/bcc/p3virtualenv/bin/activate
 # django-admin.py startproject tryjango19 => creates a new project
 # python manage.py runserver
@@ -23,10 +27,8 @@ python manage.py makemigrations music
 python manage.py migrate # alway run this after migration to appy the changes
 python manage.py sqlmigrate music 0001  # check the sql command for the migration
 
-**Everytime database migration or database change is done, need to restart server**
-
 # different model fields
-https: // docs.djangoproject.com / en / 2.2 / ref / models / fields /
+https: // docs.djangoproject.com/en/2.2/ref/models/fields/
 # guids
 https://github.com/codingforentrepreneurs/Guides
 
